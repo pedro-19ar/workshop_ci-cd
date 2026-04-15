@@ -21,7 +21,7 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      TableName: contact
+      TableName: contact-pedro
       AttributeDefinitions:
         - AttributeName: "email"
           AttributeType: "S"
@@ -38,7 +38,7 @@ Resources:
   ContactApi:
     Type: AWS::Serverless::Api
     Properties:
-      Name: contact-api
+      Name: contact-api-pedro
       EndpointConfiguration: REGIONAL
       StageName: prod
       Cors:
@@ -49,7 +49,7 @@ Resources:
   ContactCreateLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: contact-create
+      FunctionName: contact-create-pedro
       CodeUri: build/create
       Role: !GetAtt ContactCreateRole.Arn
       Environment:
@@ -68,7 +68,7 @@ Resources:
   ContactCreateRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
+      RoleName: !Sub-pedro
         - 'ContactCreateRole${region}'
         - region: !FindInMap [RegionMap, !Ref 'AWS::Region', RegionShortName]
       Description: Create contact role
@@ -102,7 +102,7 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      LogGroupName: !Sub
+      LogGroupName: !Sub-pedro
         - /aws/lambda/${MyLambdaFunction}
         - MyLambdaFunction: !Ref ContactCreateLambda
       RetentionInDays: 7
@@ -111,7 +111,7 @@ Resources:
   ContactDeleteLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: contact-delete
+      FunctionName: contact-delete-pedro
       CodeUri: build/delete
       Role: !GetAtt ContactDeleteRole.Arn
       Environment:
@@ -130,7 +130,7 @@ Resources:
   ContactDeleteRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
+      RoleName: !Sub-pedro
         - 'ContactDeleteRole${region}'
         - region: !FindInMap [RegionMap, !Ref 'AWS::Region', RegionShortName]
       Description: Delete contact role
@@ -164,7 +164,7 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      LogGroupName: !Sub
+      LogGroupName: !Sub-pedro
         - /aws/lambda/${MyLambdaFunction}
         - MyLambdaFunction: !Ref ContactDeleteLambda
       RetentionInDays: 7      
@@ -172,7 +172,7 @@ Resources:
   ContactGetLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: contact-get
+      FunctionName: contact-get-pedro
       CodeUri: build/get
       Role: !GetAtt ContactGetRole.Arn
       Environment:
@@ -191,7 +191,7 @@ Resources:
   ContactGetRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
+      RoleName: !Sub-pedro
         - 'ContactGetRole${region}'
         - region: !FindInMap [RegionMap, !Ref 'AWS::Region', RegionShortName]
       Description: Get contact role
@@ -224,7 +224,7 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      LogGroupName: !Sub
+      LogGroupName: !Sub-pedro
         - /aws/lambda/${MyLambdaFunction}
         - MyLambdaFunction: !Ref ContactGetLambda
       RetentionInDays: 7      
@@ -232,7 +232,7 @@ Resources:
   ContactUpdateLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: contact-update
+      FunctionName: contact-update-pedro
       CodeUri: build/update
       Role: !GetAtt ContactUpdateRole.Arn
       Environment:
@@ -251,7 +251,7 @@ Resources:
   ContactUpdateRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
+      RoleName: !Sub-pedro
         - 'ContactUpdateRole${region}'
         - region: !FindInMap [RegionMap, !Ref 'AWS::Region', RegionShortName]
       Description: Update contact role
@@ -285,7 +285,7 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      LogGroupName: !Sub
+      LogGroupName: !Sub-pedro
         - /aws/lambda/${MyLambdaFunction}
         - MyLambdaFunction: !Ref ContactUpdateLambda
       RetentionInDays: 7      
